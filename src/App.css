@@ -1,7 +1,15 @@
+/* .App {
+  text-align: center;
+} */
+
 .App {
   text-align: center;
+  width: 100%;
+  height: -100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +43,19 @@
   to {
     transform: rotate(360deg);
   }
+
+  
+table {
+  border: 20px solid forestgreen;
+  width: 800px;
+  height: 200px;
+}
+  
+th {
+  border-bottom: 111px solid black;
+}
+  
+td {
+  text-align: center;
+}
 }
