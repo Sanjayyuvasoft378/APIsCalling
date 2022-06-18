@@ -1,32 +1,49 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { SignupAction } from '../redux/Action/LoginAction';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { SignupAction } from "../redux/Action/LoginAction";
 export default function Signup() {
-
-  const  { register, handleSubmit } = useForm();
+  const { register, handleSubmit,formState : { errors } } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    dispatch(SignupAction(data))
-  }
+    dispatch(SignupAction(data));
+  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} >
-        <h1>Create  Your Acount Here </h1>
-        <label htmlFor="">Email</label><br />
-        <input {...register('email',{required:"enter email address"})}/><br />
-        <label htmlFor="">password</label><br />
-        <input {...register('password', {required:"enter a password"})}/><br />
-        <label htmlFor="">Confirm-Password</label><br />
-        <input {...register('password_confirmation',{required:"please Re-enter password"})}/><br /><br /><br />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h1>Create Your Acount Here </h1>
+        <label htmlFor="">Email</label>
+        <br />
+        <input {...register("email", { required: "enter email address" })} />
+        {errors.email && <p>Email  is required.</p>}
+
+        <br />
+        <label htmlFor="">password</label>
+        <br />
+        <input {...register("password", { required: "enter a password" })} />
+        {errors.password && <p>Password  is required.</p>}
+
+        <br />
+        <label htmlFor="">Confirm-Password</label>
+        <br />
+        <input
+          {...register("password_confirmation", {
+            required: "please Re-enter password",
+          })}
+        />
+         {errors.password_confirmation && <p>password_confirmation  is required.</p>}
+
+        <br />
+        <br />
+        <br />
         <input type="submit" />
-        </form>
-        <h2>If you have already an acount </h2>
-        <h3>Please signin here</h3>
-        <Link to='/'>Signin</Link>
+      </form>
+      <h2>If you have already an acount </h2>
+      <h3>Please signin here  -<Link to="/"><strong>Signin</strong></Link></h3>
+     
     </div>
-  )
+  );
 }

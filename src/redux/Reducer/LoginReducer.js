@@ -1,5 +1,6 @@
 const initialData = {
-   userData : []
+   userData : [],
+   deleteData : []
 }
 const LoginReducer = (state=initialData,action) =>{
     console.log("object");
@@ -28,6 +29,25 @@ switch(action.type){
                     userData:action.payload
         
                 }
+
+            case "UPT_POST":
+                return {
+                    ...state,
+                    userData:action.payload
+                }
+
+                case "GET_POST_BY_ID":
+                    return {
+                        ...state,
+                        userData:action.payload
+            
+                    }
+
+                case "DELETE_POST":
+                    return {
+                        ...state,
+                        deleteData:action.payload
+                    }
         default:
             return state
     }

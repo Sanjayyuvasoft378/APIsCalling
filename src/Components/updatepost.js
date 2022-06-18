@@ -1,20 +1,25 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { AddPost } from "../redux/Action/LoginAction";
-import { useNavigate } from "react-router-dom";
-export default function AddPosts() {
+import { UpdatePost } from "../redux/Action/LoginAction";
+import { useNavigate, useParams } from "react-router-dom";
+export default function UpdatePosts() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const navigater = useNavigate();
+  const {id} = useParams();
+  console.log(id);
   const onSubmit = (data) => {
-    dispatch(AddPost(data));
+    dispatch(UpdatePost(data,id));
     navigater(`/dashboard`)
-    // window.location.href=(`/dashboard`)
   };
+  
+function upt_post(id){
+    dispatch(UpdatePost(id))
+}
   return (
     <div>
-      <h1>Create Your Post Here</h1>
+      <h1>Cretae Your Post Here</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="">Title</label>&nbsp;&nbsp;&nbsp;
         <input {...register("title", { required: "enter a title" })} />
@@ -26,7 +31,7 @@ export default function AddPosts() {
         />
         <br />
         <br />
-        <button style={{backgroundColor:"green",padding:"7px"}} onClick={AddPosts}>AddPost</button>&nbsp;&nbsp;&nbsp;
+        <button style={{backgroundColor:"green",padding:"7px"}} onClick={upt_post}>UpdatePost</button>&nbsp;&nbsp;&nbsp;
       <button onClick={()=>navigater("/dashboard")} style={{backgroundColor:"yellow",padding:"7px"}}>show post</button>
       </form>
     </div>
