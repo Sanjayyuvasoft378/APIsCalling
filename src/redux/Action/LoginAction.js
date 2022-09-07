@@ -2,16 +2,19 @@ import axios from "axios";
 export const SignupAction = (data) => {
   console.log("object", data);
   return (dispatch) => {
-    const body = {
-      user: {
+    const user= {
+        firstName: data.firstName,
+        lastName:data.lastName,
         email: data.email,
+        mobileNo:data.mobileNo,
+        Address:data.Address,
         password: data.password,
-        password_confirmation: data.password_confirmation,
-      },
-    };
-    axios
-      .post("https://react-rails-api-demo.herokuapp.com/api/v1/signup/", body)
+        // password_confirmation: data.password_confirmation,
+      
+    }
+    axios.post("http://127.0.0.1:8000/store/usersignup/", user)
       .then((res) => {
+        console.log("first",res)
         localStorage.setItem("user-info", JSON.stringify(res.data));
         dispatch({
           type: "GET_SIGNUP",
