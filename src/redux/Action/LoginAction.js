@@ -53,13 +53,12 @@ export const getLogin = (data) => {
   console.log(5656, data);
   return (dispatch) => {
     const body = {
-      user: {
         email: data.email,
         password: data.password,
-      },
+     
     };
     axios
-      .post(`https://react-rails-api-demo.herokuapp.com/api/v1/signin`, body)
+      .post(`http://127.0.0.1:8000/store/userlogin/`, body)
       .then((res) => {
         console.log(34534, res.data);
         localStorage.setItem("user-info", JSON.stringify(res.data));
